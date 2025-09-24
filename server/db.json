@@ -1,0 +1,316 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Sarah Chen",
+      "email": "sarah.chen@taskflow.com",
+      "role": "Product Manager",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah",
+      "active": true,
+      "joinDate": "2024-01-15"
+    },
+    {
+      "id": 2,
+      "name": "Marcus Rodriguez",
+      "email": "marcus.r@taskflow.com",
+      "role": "Senior Developer",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Marcus",
+      "active": true,
+      "joinDate": "2024-01-10"
+    },
+    {
+      "id": 3,
+      "name": "Aisha Patel",
+      "email": "aisha.patel@taskflow.com",
+      "role": "UI/UX Designer",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Aisha",
+      "active": true,
+      "joinDate": "2024-01-20"
+    },
+    {
+      "id": 4,
+      "name": "David Kim",
+      "email": "david.kim@taskflow.com",
+      "role": "QA Tester",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=David",
+      "active": true,
+      "joinDate": "2024-01-12"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "name": "Claude Code Training Platform",
+      "description": "Develop comprehensive training materials and examples for Claude Code adoption",
+      "color": "#4F46E5",
+      "ownerId": 1,
+      "status": "active",
+      "createdAt": "2024-01-15T10:00:00Z",
+      "dueDate": "2024-03-15T23:59:59Z"
+    },
+    {
+      "id": 2,
+      "name": "TaskFlow Pro v2.0",
+      "description": "Next generation task management features with AI integration",
+      "color": "#059669",
+      "ownerId": 2,
+      "status": "planning",
+      "createdAt": "2024-01-20T14:30:00Z",
+      "dueDate": "2024-04-30T23:59:59Z"
+    },
+    {
+      "id": 3,
+      "name": "Mobile App Redesign",
+      "description": "Complete UI/UX overhaul for mobile TaskFlow application",
+      "color": "#DC2626",
+      "ownerId": 3,
+      "status": "active",
+      "createdAt": "2024-01-18T09:15:00Z",
+      "dueDate": "2024-02-28T23:59:59Z"
+    }
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Set up Node.js project structure",
+      "description": "Create the basic project structure with package.json, server setup, and Vue.js integration for the training example",
+      "projectId": 1,
+      "assignedTo": 2,
+      "createdBy": 1,
+      "status": "completed",
+      "priority": "high",
+      "tags": [
+        "setup",
+        "backend",
+        "training"
+      ],
+      "createdAt": "2024-01-15T10:30:00Z",
+      "updatedAt": "2024-01-15T16:45:00Z",
+      "dueDate": "2024-01-16T17:00:00Z",
+      "completedAt": "2024-01-15T16:45:00Z",
+      "estimatedHours": 3,
+      "actualHours": 2.5
+    },
+    {
+      "id": 2,
+      "title": "Create Vue.js component architecture",
+      "description": "Design and implement reusable Vue.js components for TaskList, TaskForm, and TaskCard with proper prop handling and event emission",
+      "projectId": 1,
+      "assignedTo": 2,
+      "createdBy": 1,
+      "status": "in_progress",
+      "priority": "high",
+      "tags": [
+        "frontend",
+        "vue.js",
+        "components",
+        "training"
+      ],
+      "createdAt": "2024-01-15T11:00:00Z",
+      "updatedAt": "2024-01-23T14:20:00Z",
+      "dueDate": "2024-01-24T17:00:00Z",
+      "estimatedHours": 5,
+      "actualHours": 3.2
+    },
+    {
+      "id": 3,
+      "title": "Design task management UI mockups",
+      "description": "Create wireframes and high-fidelity mockups for the task management interface, focusing on user experience and accessibility",
+      "projectId": 1,
+      "assignedTo": 3,
+      "createdBy": 1,
+      "status": "completed",
+      "priority": "medium",
+      "tags": [
+        "design",
+        "ui/ux",
+        "mockups",
+        "accessibility"
+      ],
+      "createdAt": "2024-01-16T09:00:00Z",
+      "updatedAt": "2024-01-19T11:30:00Z",
+      "dueDate": "2024-01-22T17:00:00Z",
+      "completedAt": "2024-01-19T11:30:00Z",
+      "estimatedHours": 6,
+      "actualHours": 5.5
+    },
+    {
+      "id": 4,
+      "title": "Write comprehensive test cases",
+      "description": "Develop test scenarios for all task management features including edge cases, error handling, and user interaction flows",
+      "projectId": 1,
+      "assignedTo": 4,
+      "createdBy": 1,
+      "status": "completed",
+      "priority": "medium",
+      "tags": [
+        "testing",
+        "qa",
+        "documentation"
+      ],
+      "createdAt": "2024-01-17T10:15:00Z",
+      "updatedAt": "2025-09-24T13:15:35.743Z",
+      "dueDate": "2024-01-26T17:00:00Z",
+      "estimatedHours": 4,
+      "completedAt": "2025-09-24T13:15:35.743Z"
+    },
+    {
+      "id": 5,
+      "title": "Implement API endpoints for task CRUD operations",
+      "description": "Create RESTful API endpoints for creating, reading, updating, and deleting tasks with proper validation and error handling",
+      "projectId": 1,
+      "assignedTo": 2,
+      "createdBy": 1,
+      "status": "todo",
+      "priority": "high",
+      "tags": [
+        "backend",
+        "api",
+        "crud",
+        "validation"
+      ],
+      "createdAt": "2024-01-18T08:45:00Z",
+      "updatedAt": "2024-01-18T08:45:00Z",
+      "dueDate": "2024-01-25T17:00:00Z",
+      "estimatedHours": 4
+    },
+    {
+      "id": 6,
+      "title": "Create training documentation",
+      "description": "Write comprehensive guides for using Claude Code with the TaskFlow Pro example, including subagent demonstrations and common use cases",
+      "projectId": 1,
+      "assignedTo": 1,
+      "createdBy": 1,
+      "status": "in_progress",
+      "priority": "high",
+      "tags": [
+        "documentation",
+        "training",
+        "claude-code"
+      ],
+      "createdAt": "2024-01-19T13:20:00Z",
+      "updatedAt": "2024-01-23T15:10:00Z",
+      "dueDate": "2024-01-27T17:00:00Z",
+      "estimatedHours": 6,
+      "actualHours": 2.8
+    },
+    {
+      "id": 7,
+      "title": "Research AI integration patterns",
+      "description": "Investigate how to integrate AI-powered features like task prioritization, deadline prediction, and workload balancing",
+      "projectId": 2,
+      "assignedTo": 2,
+      "createdBy": 2,
+      "status": "todo",
+      "priority": "low",
+      "tags": [
+        "research",
+        "ai",
+        "features",
+        "planning"
+      ],
+      "createdAt": "2024-01-20T16:00:00Z",
+      "updatedAt": "2024-01-20T16:00:00Z",
+      "dueDate": "2024-02-15T17:00:00Z",
+      "estimatedHours": 8
+    },
+    {
+      "id": 8,
+      "title": "Mobile app navigation flow design",
+      "description": "Design intuitive navigation patterns for mobile task management, considering thumb-friendly interactions and screen size constraints",
+      "projectId": 3,
+      "assignedTo": 3,
+      "createdBy": 3,
+      "status": "in_progress",
+      "priority": "high",
+      "tags": [
+        "mobile",
+        "navigation",
+        "ux",
+        "design"
+      ],
+      "createdAt": "2024-01-21T11:30:00Z",
+      "updatedAt": "2024-01-23T09:45:00Z",
+      "dueDate": "2024-01-28T17:00:00Z",
+      "estimatedHours": 5,
+      "actualHours": 2.1
+    },
+    {
+      "title": "Test Task",
+      "description": "sdfsd sdf sdf sdf sdf",
+      "projectId": 1,
+      "assignedTo": 4,
+      "priority": "medium",
+      "status": "todo",
+      "dueDate": null,
+      "estimatedHours": null,
+      "updatedAt": "2025-09-24T13:17:28.974Z",
+      "id": 9,
+      "createdAt": "2025-09-24T13:17:05.892Z",
+      "createdBy": 1
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "taskId": 2,
+      "userId": 1,
+      "content": "Great progress on the component structure! The prop handling looks solid. Don't forget to add proper TypeScript interfaces for better developer experience.",
+      "createdAt": "2024-01-23T14:25:00Z"
+    },
+    {
+      "id": 2,
+      "taskId": 2,
+      "userId": 2,
+      "content": "Thanks! I'll add the TypeScript definitions in the next iteration. Should I also include JSDoc comments for the training materials?",
+      "createdAt": "2024-01-23T14:30:00Z"
+    },
+    {
+      "id": 3,
+      "taskId": 6,
+      "userId": 4,
+      "content": "The documentation structure looks comprehensive. Would be great to include some common troubleshooting scenarios that attendees might encounter.",
+      "createdAt": "2024-01-23T15:15:00Z"
+    }
+  ],
+  "taskStatuses": [
+    {
+      "id": "todo",
+      "name": "To Do",
+      "color": "#6B7280",
+      "order": 1
+    },
+    {
+      "id": "in_progress",
+      "name": "In Progress",
+      "color": "#3B82F6",
+      "order": 2
+    },
+    {
+      "id": "completed",
+      "name": "Completed",
+      "color": "#10B981",
+      "order": 3
+    }
+  ],
+  "priorities": [
+    {
+      "id": "low",
+      "name": "Low",
+      "color": "#6B7280",
+      "order": 1
+    },
+    {
+      "id": "medium",
+      "name": "Medium",
+      "color": "#F59E0B",
+      "order": 2
+    },
+    {
+      "id": "high",
+      "name": "High",
+      "color": "#EF4444",
+      "order": 3
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "taskflow-pro",
+  "version": "1.0.0",
+  "description": "A team task management system for Claude Code Developer Session 1 training",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "concurrently \"json-server --watch server/db.json --port 3001 --routes server/routes.json\" \"live-server public --port=3000 --no-browser\"",
+    "server": "json-server --watch server/db.json --port 3001 --routes server/routes.json",
+    "dev": "live-server public --port=3000 --no-browser",
+    "test": "echo \"Use Claude Code to run tests and analyze code quality\" && exit 0"
+  },
+  "keywords": [
+    "claude-code",
+    "training",
+    "task-management",
+    "vue.js",
+    "json-server",
+    "education"
+  ],
+  "author": "Claude Code Training Team",
+  "license": "MIT",
+  "devDependencies": {
+    "json-server": "^0.17.4",
+    "concurrently": "^8.2.2",
+    "live-server": "^1.2.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "claude-code": {
+    "training-session": "Dev Session 1: Advanced Claude Code Features",
+    "learning-objectives": [
+      "Master Claude Code capabilities (code analysis, custom agents, and documentation workflows)",
+      "Create and use custom slash commands",
+      "Implement development workflow hooks",
+      "Practice parallel task execution with Claude Code"
+    ],
+    "session-duration": "30 minutes",
+    "tech-stack": ["Node.js", "Vue.js 3", "json-server", "REST API"]
+  }
+}
