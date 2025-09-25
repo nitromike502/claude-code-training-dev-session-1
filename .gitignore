@@ -95,3 +95,10 @@ loglevel=silent
 # === Optional Runtime ===
 .cache/
 .parcel-cache/
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
