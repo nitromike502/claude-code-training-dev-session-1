@@ -78,15 +78,14 @@ TaskFlowApp (Root Component)
 ##### Task Creation
 - **Modal Form:** Full-screen overlay with form validation
 - **Required Fields:** Title (100 char max), Description (500 char max), Project, Assignee
-- **Optional Fields:** Priority (default: medium), Status (default: todo), Due Date, Estimated Hours
+- **Optional Fields:** Priority (default: medium), Status (default: todo), Due Date
 - **Validation:** Real-time client-side validation with error messaging
-- **Character Counters:** Live character counting for title and description fields
 - **Auto-focus:** Title field receives focus when modal opens
 
 ##### Task Display and Organization
-- **View Modes:** Grid view (default) and List view toggle
+- **View Modes:** Grid view only
 - **Task Cards:** Information-dense cards showing all task metadata
-- **Visual Hierarchy:** Title, description, assignee, project, dates, time estimates
+- **Visual Hierarchy:** Title, description, assignee, project, dates
 - **Status Badges:** Color-coded status indicators (todo=gray, in_progress=blue, completed=green)
 - **Priority Badges:** Color-coded priority indicators (low=gray, medium=yellow, high=red)
 - **Project Indicators:** Colored dots matching project theme colors
@@ -115,18 +114,8 @@ TaskFlowApp (Root Component)
 - **Search Icon:** Visual search indicator in input field
 - **Placeholder:** "Search tasks..." guidance text
 
-##### Filter Categories
-- **Status Filter:** All Status, To Do, In Progress, Completed
-- **Priority Filter:** All Priorities, Low, Medium, High
-- **Project Filter:** All Projects + dynamic project list from API
-- **Filter Logic:** AND operation between active filters
-- **Clear Filters:** Available when any non-default filter is active
-
-##### Sorting System
-- **Sort Fields:** Title (alphabetical), Priority (low to high), Due Date (chronological)
-- **Sort Orders:** Ascending and Descending for each field
-- **Sort Indicators:** Visual arrows showing current sort state
-- **Default Sort:** Title ascending
+##### Default Sorting
+- **Default Sort:** Chronological order (most recent first)
 
 #### 3. Statistics and Dashboard
 
@@ -181,8 +170,6 @@ TaskFlowApp (Root Component)
   "updatedAt": "ISO8601 datetime (auto-updated)",
   "dueDate": "ISO8601 datetime (optional)",
   "completedAt": "ISO8601 datetime (set when status = completed)",
-  "estimatedHours": "number (decimal, optional)",
-  "actualHours": "number (decimal, optional)"
 }
 ```
 
@@ -213,16 +200,6 @@ TaskFlowApp (Root Component)
 }
 ```
 
-#### Comment Data Structure (Future Feature)
-```json
-{
-  "id": "number",
-  "taskId": "number (references tasks.id)",
-  "userId": "number (references users.id)",
-  "content": "string (comment text)",
-  "createdAt": "ISO8601 datetime"
-}
-```
 
 ### API Specifications
 
@@ -255,7 +232,7 @@ TaskFlowApp (Root Component)
 ##### DELETE /api/tasks/{id}
 - **Purpose:** Delete task
 - **Response:** Empty response with 200 status
-- **Cascade:** No cascade deletion (comments remain orphaned)
+- **Cascade:** No cascade deletion
 
 #### Reference Data Endpoints
 
@@ -279,7 +256,6 @@ TaskFlowApp (Root Component)
   "/api/tasks/priority/:priority": "/tasks?priority=:priority",
   "/api/projects/user/:userId": "/projects?ownerId=:userId",
   "/api/users/active": "/users?active=true",
-  "/api/comments/task/:taskId": "/comments?taskId=:taskId"
 }
 ```
 
@@ -370,7 +346,6 @@ TaskFlowApp (Root Component)
 - **Assignee Coverage:** Tasks assigned to all 4 team members
 - **Realistic Content:** Professional task titles and descriptions
 - **Date Variety:** Mix of past, current, and future due dates
-- **Time Estimates:** Realistic hour estimates (0.5 to 8 hours)
 
 ### UI Component Specifications
 
@@ -382,8 +357,8 @@ TaskFlowApp (Root Component)
 - **Event Handling:** Delegates CRUD operations to child components
 
 #### TaskList Component
-- **Layout:** Statistics cards + filter panel + task grid/list
-- **State:** View mode toggle, filter states, sort configuration
+- **Layout:** Statistics cards + search panel + task grid
+- **State:** Search state, basic sort configuration
 - **Event Emissions:** task-created, task-updated, task-deleted to parent
 - **Computed Properties:** Filtered and sorted task lists
 - **Watchers:** React to filter changes and update displayed tasks
@@ -468,7 +443,7 @@ TaskFlowApp (Root Component)
 #### Manual Testing Scenarios
 1. **Task Creation:** Create tasks with all field combinations
 2. **Task Updates:** Test all status transitions and edits
-3. **Filter Combinations:** Test all filter and search combinations
+3. **Search:** Test search functionality
 4. **Error Handling:** Test network failures and recovery
 5. **Responsive Design:** Test across mobile, tablet, desktop viewports
 6. **Browser Compatibility:** Test in all supported browsers
@@ -529,11 +504,9 @@ TaskFlowApp (Root Component)
 3. **Status Workflows:** Task status transitions and validation
 4. **Basic Search:** Real-time search functionality
 
-### Phase 3: Advanced Features
-1. **Advanced Filtering:** Multi-category filtering system
-2. **Sorting System:** Multi-field sorting with indicators
-3. **Responsive Design:** Mobile-optimized layouts
-4. **Polish and Accessibility:** Final UX improvements
+### Phase 3: UI Polish
+1. **Responsive Design:** Mobile-optimized layouts
+2. **Polish and Accessibility:** Final UX improvements
 
 ### Phase 4: Production Readiness
 1. **Comprehensive Logging:** Production-ready logging and monitoring
