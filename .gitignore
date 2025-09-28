@@ -58,23 +58,6 @@ $RECYCLE.BIN/
 .claude/sessions/
 .claude/temp/
 
-# Personal Claude Code settings (if any)
-.claude/user-config.json
-
-# === Training Session Specific ===
-# Backup files from live coding
-*.backup
-*.bak
-
-# Presenter notes and answers
-docs/presenter-notes-private.md
-docs/session-answers.md
-
-# === Optional: Generated Documentation ===
-# Uncomment if you want to regenerate docs each session
-# docs/generated/
-# api-docs/
-
 # === Keep These Files ===
 !.claude/agents/
 !.claude/commands/
