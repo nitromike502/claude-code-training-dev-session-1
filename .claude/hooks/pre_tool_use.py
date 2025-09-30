@@ -18,48 +18,61 @@ try:
 except ImportError:
     pass  # dotenv is optional
 
-def is_dangerous_rm_command(command):
+def handle_rm_command(command):
     """
-    Comprehensive detection of dangerous rm commands.
-    Matches various forms of rm -rf and similar destructive patterns.
+    Handle rm commands by renaming single files with .delete extension.
+    Returns None if allowed, or an error message if blocked.
+    Also returns the path that was renamed if applicable.
     """
-    # Normalize command by removing extra spaces and converting to lowercase
-    normalized = ' '.join(command.lower().split())
+    # Check if command contains rm
+    if not re.search(r'\brm\b', command):
+        return None, None
 
-    # Pattern 1: Standard rm -rf variations
-    patterns = [
-        r'\brm\s+.*-[a-z]*r[a-z]*f',  # rm -rf, rm -fr, rm -Rf, etc.
-        r'\brm\s+.*-[a-z]*f[a-z]*r',  # rm -fr variations
-        r'\brm\s+--recursive\s+--force',  # rm --recursive --force
-        r'\brm\s+--force\s+--recursive',  # rm --force --recursive
-        r'\brm\s+-r\s+.*-f',  # rm -r ... -f
-        r'\brm\s+-f\s+.*-r',  # rm -f ... -r
-    ]
+    # Block any rm with -r or -rf flags (recursive deletion)
+    if re.search(r'\brm\b.*-[a-z]*r', command):
+        return "BLOCKED: Cannot delete directories recursively. Delete manually if needed.", None
 
-    # Check for dangerous patterns
-    for pattern in patterns:
-        if re.search(pattern, normalized):
-            return True
+    # Extract file paths from rm command
+    parts = command.split()
+    paths = []
 
-    # Pattern 2: Check for rm with recursive flag targeting dangerous paths
-    dangerous_paths = [
-        r'/',           # Root directory
-        r'/\*',         # Root with wildcard
-        r'~',           # Home directory
-        r'~/',          # Home directory path
-        r'\$HOME',      # Home environment variable
-        r'\.\.',        # Parent directory references
-        r'\*',          # Wildcards in general rm -rf context
-        r'\.',          # Current directory
-        r'\.\s*$',      # Current directory at end of command
-    ]
+    for part in parts[1:]:  # Skip 'rm' itself
+        # Skip flags
+        if part.startswith('-'):
+            continue
+        # This is a file path
+        paths.append(part)
 
-    if re.search(r'\brm\s+.*-[a-z]*r', normalized):  # If rm has recursive flag
-        for path in dangerous_paths:
-            if re.search(path, normalized):
-                return True
+    # Block if no paths found (shouldn't happen but safety check)
+    if not paths:
+        return "BLOCKED: No file path detected in rm command", None
 
-    return False
+    # Block if multiple paths
+    if len(paths) > 1:
+        return "BLOCKED: Cannot delete multiple files. Delete them one at a time or manually.", None
+
+    # Single file path - check if it exists and is a file
+    file_path = Path(paths[0])
+
+    # If file doesn't exist, allow the command to fail naturally
+    if not file_path.exists():
+        return None, None
+
+    # Block if it's a directory
+    if file_path.is_dir():
+        return "BLOCKED: Cannot delete directories. Delete manually if needed.", None
+
+    # Block if path contains wildcards
+    if '*' in paths[0] or '?' in paths[0]:
+        return "BLOCKED: Cannot use wildcards with rm. Delete files individually or manually.", None
+
+    # It's a single file - rename it with .delete extension
+    new_path = Path(str(file_path) + '.delete')
+    try:
+        file_path.rename(new_path)
+        return f"File marked for deletion: {file_path} -> {new_path}", str(new_path)
+    except Exception as e:
+        return f"BLOCKED: Could not rename file: {e}", None
 
 def is_dangerous_rsync_command(command):
     """
@@ -141,10 +154,17 @@ def main():
         if tool_name == 'Bash':
             command = tool_input.get('command', '')
 
-            # Block rm -rf commands with comprehensive pattern matching
-            if is_dangerous_rm_command(command):
-                print("BLOCKED: Dangerous rm command detected and prevented", file=sys.stderr)
-                sys.exit(2)  # Exit code 2 blocks tool call and shows error to Claude
+            # Handle rm commands - either rename single files or block
+            error_msg, renamed_path = handle_rm_command(command)
+            if error_msg:
+                if renamed_path:
+                    # File was renamed successfully - inform Claude
+                    print(error_msg, file=sys.stderr)
+                    sys.exit(2)  # Exit code 2 blocks tool call and shows message to Claude
+                else:
+                    # Blocked without action
+                    print(error_msg, file=sys.stderr)
+                    sys.exit(2)  # Exit code 2 blocks tool call and shows error to Claude
 
             # Block rsync commands with --delete flag
             if is_dangerous_rsync_command(command):
