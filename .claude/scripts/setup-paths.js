@@ -20,6 +20,9 @@ try {
   }
   settings.env.CLAUDE_PROJECT_ROOT = projectRoot;
 
+  // Collect hook script paths and make them executable
+  const hookScriptPaths = new Set();
+
   // Update all hook commands to use absolute paths
   if (settings.hooks) {
     Object.keys(settings.hooks).forEach(hookType => {
@@ -36,6 +39,9 @@ try {
               const scriptName = path.basename(relativeScript);
               const absolutePath = path.join(hookScriptsDir, scriptName);
 
+              // Track this script for making executable
+              hookScriptPaths.add(absolutePath);
+
               // Update command with absolute path
               hook.command = args ? `${absolutePath} ${args}` : absolutePath;
             }
@@ -45,12 +51,24 @@ try {
     });
   }
 
+  // Make all hook scripts executable
+  let madeExecutable = 0;
+  hookScriptPaths.forEach(scriptPath => {
+    try {
+      fs.chmodSync(scriptPath, 0o755);
+      madeExecutable++;
+    } catch (error) {
+      console.warn(`⚠️  Could not make ${path.basename(scriptPath)} executable: ${error.message}`);
+    }
+  });
+
   // Write updated settings back to file
   fs.writeFileSync(settingsPath, JSON.stringify(settings, null, 2) + '\n');
 
   console.log('✅ Successfully updated settings.json:');
   console.log(`   - CLAUDE_PROJECT_ROOT: ${projectRoot}`);
   console.log(`   - Hook scripts converted to absolute paths`);
+  console.log(`   - Made ${madeExecutable} hook script(s) executable`);
 
 } catch (error) {
   console.error('❌ Failed to update settings.json:', error.message);

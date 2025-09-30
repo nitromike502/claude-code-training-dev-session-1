@@ -24,13 +24,13 @@
         ]
       }
     ],
-    "Stop": [
+    "SessionEnd": [
       {
         "matcher": "*",
         "hooks": [
           {
             "type": "command",
-            "command": "hooks/stop.py --chat"
+            "command": "hooks/session_end.py --chat"
           }
         ]
       }

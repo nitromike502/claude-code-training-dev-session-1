@@ -59,7 +59,7 @@ def main():
         current_date = datetime.now().strftime("%Y%m%d")
         log_dir = project_root / '.claude' / 'logs'
         log_dir.mkdir(parents=True, exist_ok=True)
-        log_path = log_dir / "stop.json"
+        log_path = log_dir / "session_end.json"
 
         # Read existing log data or initialize empty list
         if log_path.exists():
@@ -111,7 +111,7 @@ def main():
                     try:
                         error_log = log_dir / 'hook_errors.log'
                         with open(error_log, 'a') as f:
-                            f.write(f"{datetime.now().isoformat()}: stop.py transcript error: {e}\n")
+                            f.write(f"{datetime.now().isoformat()}: session_end.py transcript error: {e}\n")
                     except:
                         pass
 
@@ -124,7 +124,7 @@ def main():
             error_log = project_root / '.claude' / 'logs' / 'hook_errors.log'
             error_log.parent.mkdir(parents=True, exist_ok=True)
             with open(error_log, 'a') as f:
-                f.write(f"{datetime.now().isoformat()}: stop.py JSON decode error: {e}\n")
+                f.write(f"{datetime.now().isoformat()}: session_end.py JSON decode error: {e}\n")
         except:
             pass  # Still fail silently if we can't log
         sys.exit(0)
@@ -135,7 +135,7 @@ def main():
             error_log = project_root / '.claude' / 'logs' / 'hook_errors.log'
             error_log.parent.mkdir(parents=True, exist_ok=True)
             with open(error_log, 'a') as f:
-                f.write(f"{datetime.now().isoformat()}: stop.py error: {e}\n")
+                f.write(f"{datetime.now().isoformat()}: session_end.py error: {e}\n")
                 import traceback
                 f.write(traceback.format_exc() + "\n")
         except:

@@ -1,12 +1,22 @@
 #!/usr/bin/env -S uv run --script
 # /// script
 # requires-python = ">=3.8"
+# dependencies = [
+#     "python-dotenv",
+# ]
 # ///
 
 import json
+import os
 import sys
 import re
 from pathlib import Path
+
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass  # dotenv is optional
 
 def is_dangerous_rm_command(command):
     """
@@ -94,6 +104,25 @@ def is_env_file_access(tool_name, tool_input):
 
     return False
 
+def get_project_root():
+    """
+    Get project root from CLAUDE_PROJECT_ROOT environment variable.
+    Falls back to finding .claude directory if not set.
+    """
+    # First, try environment variable
+    env_root = os.getenv('CLAUDE_PROJECT_ROOT')
+    if env_root:
+        return Path(env_root)
+
+    # Fallback: find .claude directory
+    current = Path.cwd().resolve()
+    for parent in [current] + list(current.parents):
+        if (parent / '.claude').exists():
+            return parent
+
+    # Last resort: current directory
+    return current
+
 def main():
     try:
         # Read JSON input from stdin
@@ -122,8 +151,9 @@ def main():
                 print("BLOCKED: Dangerous rsync --delete command detected and prevented", file=sys.stderr)
                 sys.exit(2)  # Exit code 2 blocks tool call and shows error to Claude
 
-        # Ensure log directory exists
-        log_dir = Path('.claude/logs')
+        # Ensure log directory exists using project root
+        project_root = get_project_root()
+        log_dir = project_root / '.claude' / 'logs'
         log_dir.mkdir(parents=True, exist_ok=True)
         log_path = log_dir / 'pre_tool_use.json'
 
