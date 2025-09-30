@@ -1,5 +1,6 @@
 {
-  "$schema": "https://claude.ai/schemas/settings.json",
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "includeCoAuthoredBy": false,
   "hooks": {
     "PreToolUse": [
       {
@@ -18,8 +19,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "hooks/pre_compact.py --backup --verbose",
-            "description": "Backup transcript and log compaction events before context window compression"
+            "command": "hooks/pre_compact.py --backup --verbose"
           }
         ]
       }
@@ -30,8 +30,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "hooks/stop.py --chat",
-            "description": "Export transcript to JSON for easy review and sharing"
+            "command": "hooks/stop.py --chat"
           }
         ]
       }
@@ -42,14 +41,13 @@
         "hooks": [
           {
             "type": "command",
-            "command": "hooks/subagent_stop.py --chat",
-            "description": "Export subagent transcript to JSON for analysis"
+            "command": "hooks/subagent_stop.py --chat"
           }
         ]
       }
     ]
   },
   "env": {
-    "CLAUDE_PROJECT_ROOT": "/home/training/claude-code-subagents"
+    "CLAUDE_PROJECT_ROOT": ""
   }
 }

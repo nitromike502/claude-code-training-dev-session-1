@@ -9,6 +9,10 @@
   ],
   "author": "Claude Code Training Team",
   "license": "MIT",
+  "scripts": {
+    "postinstall": "node .claude/scripts/setup-paths.js",
+    "setup": "node .claude/scripts/setup-paths.js"
+  },
   "devDependencies": {
     "@playwright/test": "^1.55.1",
     "@types/node": "^24.5.2",
