@@ -10,7 +10,6 @@ Execute a comprehensive development workflow through four sequential phases with
 <context>
 Key References:
 - Project Requirements: @PRD.md (comprehensive TaskFlow Pro specifications)
-- Agent Specifications: @SWARM_AGENTS.md (8-agent team structure)
 - Development Progress: Track via TodoWrite throughout execution
 
 Current Project: TaskFlow Pro - Vue.js 3 task management web application
@@ -24,7 +23,7 @@ Status: Ready for full MVP implementation
 **Dependency**: None - can start immediately
 **Execution**: Execute agents in sequence, each builds on previous outputs
 
-**sparc-orchestrator-agent**: Initialize project coordination and establish development workflow. Read PRD.md and SWARM_AGENTS.md to understand complete project scope. Create comprehensive phase tracking with TodoWrite. Establish communication protocols between all 8 agents. Set up success criteria validation checkpoints for each phase.
+**sparc-orchestrator-agent**: Initialize project coordination and establish development workflow. Read PRD.md to understand complete project scope. Create comprehensive phase tracking with TodoWrite. Establish communication protocols between all 8 agents. Set up success criteria validation checkpoints for each phase.
 
 **general-purpose** (PRD Analysis & Ticket Creation Agent): Perform deep analysis of PRD.md to extract all functional and technical requirements. Break down requirements into granular, actionable development tickets. Create user stories with acceptance criteria for each feature. Map features to development phases and identify dependencies between tickets. Generate comprehensive requirements analysis document and prioritized development backlog.
 
@@ -84,7 +83,7 @@ Status: Ready for full MVP implementation
    - For sequential phases: execute one agent at a time with complete context
    - For parallel phases: use single message with multiple Task() calls
    - Each Task call includes complete context from previous phases
-   - Map each agent to correct subagent_type based on SWARM_AGENTS.md specifications
+   - Map each agent to correct subagent_type based on the agent specifications
    - Include specific deliverables expected from each agent
 
 3. **Phase Completion Management**:
@@ -161,7 +160,7 @@ Status: Ready for full MVP implementation
 <human_review_needed>
 Before execution, confirm:
 - [ ] PRD.md has been reviewed and requirements are clear
-- [ ] SWARM_AGENTS.md specifications align with orchestration phases
+- [ ] Agent specifications align with orchestration phases
 - [ ] Technology stack is appropriate for MVP scope
 - [ ] Phase dependencies are clearly understood
 - [ ] Success criteria are achievable and measurable
@@ -171,7 +170,7 @@ Before execution, confirm:
 ## Execution Command
 
 Begin orchestration by:
-1. Reading PRD.md and SWARM_AGENTS.md for complete project context
+1. Reading PRD.md for complete project context
 2. Creating comprehensive phase tracking with TodoWrite
 3. Executing Phase 1 with sequential agent coordination
 4. Managing phase progression with dependency validation
