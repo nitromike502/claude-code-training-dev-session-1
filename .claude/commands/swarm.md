@@ -16,6 +16,8 @@ Current Project: TaskFlow Pro - Vue.js 3 task management web application
 Tech Stack: Vue.js 3 (CDN), json-server, Tailwind CSS, Font Awesome, Node.js 16+
 Architecture: CDN-based delivery, no build tools, file-based JSON database
 Status: Ready for full MVP implementation
+
+**CRITICAL CONSTRAINT**: All agents must IGNORE the `.claude` directory entirely. Do NOT read, reference, or interact with any files in `.claude/` during development. The TaskFlow Pro application must be built fresh in the project root based solely on PRD.md specifications.
 </context>
 
 <orchestration_phases>
@@ -23,7 +25,7 @@ Status: Ready for full MVP implementation
 **Dependency**: None - can start immediately
 **Execution**: Execute agents in sequence, each builds on previous outputs
 
-**sparc-orchestrator-agent**: Initialize project coordination and establish development workflow. Read PRD.md to understand complete project scope. Create comprehensive phase tracking with TodoWrite. Establish communication protocols between all 8 agents. Set up success criteria validation checkpoints for each phase.
+**sparc-orchestrator-agent**: Initialize project coordination and establish development workflow. Read PRD.md to understand complete project scope. Create comprehensive phase tracking with TodoWrite. Establish communication protocols between all 8 agents. Set up success criteria validation checkpoints for each phase. **IMPORTANT: Do NOT read or reference any files in the `.claude/` directory. Focus only on PRD.md and project root.**
 
 **general-purpose** (PRD Analysis & Ticket Creation Agent): Perform deep analysis of PRD.md to extract all functional and technical requirements. Break down requirements into granular, actionable development tickets. Create user stories with acceptance criteria for each feature. Map features to development phases and identify dependencies between tickets. Generate comprehensive requirements analysis document and prioritized development backlog.
 
@@ -37,7 +39,7 @@ Status: Ready for full MVP implementation
 **Dependency**: Phase 1 outputs (requirements, documentation structure, quality standards)
 **Execution**: Execute agents in sequence, each uses all Phase 1 outputs as context
 
-**general-purpose** (DevOps Setup Agent): Set up complete development environment based on PRD specifications. Create package.json with exact dependencies (json-server 0.17.4+, live-server 1.2.2+, concurrently 8.2.2+). Configure ports 3000 (frontend) and 3001 (API). Create npm scripts for concurrent server startup. Establish project folder structure and validate Node.js 16+ compatibility requirements.
+**general-purpose** (DevOps Setup Agent): Set up complete development environment based on PRD specifications. Create package.json with exact dependencies (json-server 0.17.4+, live-server 1.2.2+, concurrently 8.2.2+). Configure ports 3000 (frontend) and 3001 (API). Create npm scripts for concurrent server startup. Establish project folder structure (excluding `.claude/`) and validate Node.js 16+ compatibility requirements. **IMPORTANT: Build application structure in project root, ignore `.claude/` directory.**
 
 **general-purpose** (Data Architecture Agent): Create complete JSON database (server/db.json) with sample data matching PRD specifications. Implement server/routes.json for custom API endpoint mappings. Design RESTful API structure (/api/tasks, /api/users, /api/projects). Populate realistic sample data: 4 team members with DiceBear avatars, 3 projects, 8-9 tasks with proper status distribution (3 completed, 3 in_progress, 2-3 todo). Validate all data models and foreign key relationships.
 
