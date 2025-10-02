@@ -1,7 +1,7 @@
 ---
 name: data-architecture-agent
 description: Use for designing JSON database structures, API endpoints, and creating realistic sample data for json-server applications. Specialist for database schema design and RESTful API architecture.
-tools: Write, Edit, MultiEdit
+tools: Read, Write, Edit, MultiEdit, Glob, Grep
 model: sonnet
 color: blue
 ---

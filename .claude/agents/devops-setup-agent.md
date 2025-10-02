@@ -1,7 +1,7 @@
 ---
 name: devops-setup-agent
 description: Use proactively for infrastructure and development environment setup, including package.json creation, dependency management, port configuration, and project structure initialization for Vue.js 3 CDN-based applications
-tools: Write, Edit, Bash
+tools: Read, Write, Edit, Bash, Glob
 model: sonnet
 color: blue
 ---

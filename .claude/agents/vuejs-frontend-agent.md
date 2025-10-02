@@ -1,7 +1,7 @@
 ---
 name: vuejs-frontend-agent
 description: Use for complete Vue.js 3 frontend development including component architecture, CDN setup, state management, and API integration for TaskFlow Pro application
-tools: Read, Write, Edit, MultiEdit, WebFetch
+tools: Read, Write, Edit, MultiEdit, WebFetch, Bash
 model: sonnet
 color: green
 ---
