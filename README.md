@@ -27,7 +27,7 @@ This project uses a simple, universally accessible stack:
 ### Why This Stack?
 
 ```
-★ Insight ─────────────────────────────────────
+★ Insight ─────────────────────────────────────  
 Zero setup barriers = Maximum development time
 - No Docker, webpack, or complex dependencies
 - Works identically on Windows, Mac, and Linux
@@ -45,7 +45,7 @@ Zero setup barriers = Maximum development time
 
 ```bash
 # Clone the repository
-git clone <your-repo-url> taskflow-pro
+git clone https://github.com/nitromike502/claude-code-training-dev-session-1 taskflow-pro
 cd taskflow-pro
 
 # Install dependencies (only 3 packages!)
