@@ -1,8 +1,7 @@
 /**
  * TaskList Component
  *
- * Main component for displaying and managing tasks with advanced
- * filtering, searching, and sorting capabilities.
+ * Main component for displaying and managing tasks.
  */
 
 const TaskList = {
@@ -27,77 +26,18 @@ const TaskList = {
         const { ref, computed } = Vue;
 
         // State
-        const searchQuery = ref('');
-        const statusFilter = ref('all');
-        const priorityFilter = ref('all');
-        const projectFilter = ref('all');
-        const sortBy = ref('dueDate');
-        const sortOrder = ref('asc');
         const showForm = ref(false);
         const editingTask = ref(null);
         const viewMode = ref('grid'); // 'grid' or 'list'
 
         // Computed properties
-        const filteredAndSortedTasks = computed(() => {
-            let filtered = props.tasks.filter(task => {
-                // Search filter
-                const searchLower = searchQuery.value.toLowerCase();
-                const matchesSearch = !searchQuery.value ||
-                    task.title.toLowerCase().includes(searchLower) ||
-                    task.description.toLowerCase().includes(searchLower);
-
-                // Status filter
-                const matchesStatus = statusFilter.value === 'all' || task.status === statusFilter.value;
-
-                // Priority filter
-                const matchesPriority = priorityFilter.value === 'all' || task.priority === priorityFilter.value;
-
-                // Project filter
-                const matchesProject = projectFilter.value === 'all' || task.projectId === parseInt(projectFilter.value);
-
-                return matchesSearch && matchesStatus && matchesPriority && matchesProject;
-            });
-
-            // Sort
-            filtered.sort((a, b) => {
-                let aVal = a[sortBy.value];
-                let bVal = b[sortBy.value];
-
-                // Handle different data types
-                if (sortBy.value === 'dueDate') {
-                    aVal = aVal ? new Date(aVal) : new Date('9999-12-31');
-                    bVal = bVal ? new Date(bVal) : new Date('9999-12-31');
-                } else if (sortBy.value === 'priority') {
-                    const priorityOrder = { low: 1, medium: 2, high: 3 };
-                    aVal = priorityOrder[aVal] || 0;
-                    bVal = priorityOrder[bVal] || 0;
-                } else if (typeof aVal === 'string') {
-                    aVal = aVal.toLowerCase();
-                    bVal = bVal.toLowerCase();
-                }
-
-                const comparison = aVal > bVal ? 1 : aVal < bVal ? -1 : 0;
-                return sortOrder.value === 'asc' ? comparison : -comparison;
-            });
-
-            return filtered;
-        });
-
         const taskStats = computed(() => {
-            const filtered = filteredAndSortedTasks.value;
             return {
-                total: filtered.length,
-                todo: filtered.filter(t => t.status === 'todo').length,
-                inProgress: filtered.filter(t => t.status === 'in_progress').length,
-                completed: filtered.filter(t => t.status === 'completed').length
+                total: props.tasks.length,
+                todo: props.tasks.filter(t => t.status === 'todo').length,
+                inProgress: props.tasks.filter(t => t.status === 'in_progress').length,
+                completed: props.tasks.filter(t => t.status === 'completed').length
             };
-        });
-
-        const hasActiveFilters = computed(() => {
-            return searchQuery.value ||
-                statusFilter.value !== 'all' ||
-                priorityFilter.value !== 'all' ||
-                projectFilter.value !== 'all';
         });
 
         // Helper functions
@@ -154,40 +94,11 @@ const TaskList = {
             editingTask.value = null;
         };
 
-        const clearFilters = () => {
-            searchQuery.value = '';
-            statusFilter.value = 'all';
-            priorityFilter.value = 'all';
-            projectFilter.value = 'all';
-        };
-
-        const handleSort = (field) => {
-            if (sortBy.value === field) {
-                sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc';
-            } else {
-                sortBy.value = field;
-                sortOrder.value = 'asc';
-            }
-        };
-
-        const getSortIcon = (field) => {
-            if (sortBy.value !== field) return 'fas fa-sort';
-            return sortOrder.value === 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down';
-        };
-
         return {
-            searchQuery,
-            statusFilter,
-            priorityFilter,
-            projectFilter,
-            sortBy,
-            sortOrder,
             showForm,
             editingTask,
             viewMode,
-            filteredAndSortedTasks,
             taskStats,
-            hasActiveFilters,
             getProjectById,
             getUserById,
             handleNewTask,
@@ -195,10 +106,7 @@ const TaskList = {
             handleTaskSaved,
             handleTaskDeleted,
             handleStatusChanged,
-            handleFormCancelled,
-            clearFilters,
-            handleSort,
-            getSortIcon
+            handleFormCancelled
         };
     },
 
@@ -209,8 +117,7 @@ const TaskList = {
                 <div>
                     <h2 class="text-2xl font-bold text-gray-900">Tasks</h2>
                     <p class="text-gray-600 mt-1">
-                        <span class="font-medium">{{ taskStats.total }}</span> task{{ taskStats.total !== 1 ? 's' : '' }} found
-                        <span v-if="hasActiveFilters" class="text-sm">(filtered)</span>
+                        <span class="font-medium">{{ taskStats.total }}</span> task{{ taskStats.total !== 1 ? 's' : '' }}
                     </p>
                 </div>
                 <div class="flex items-center space-x-3">
@@ -295,114 +202,20 @@ const TaskList = {
                 </div>
             </div>
 
-            <!-- Filters and Search -->
-            <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-                    <!-- Search -->
-                    <div class="lg:col-span-2">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Search</label>
-                        <div class="relative">
-                            <input
-                                v-model="searchQuery"
-                                type="text"
-                                placeholder="Search tasks..."
-                                class="form-input pl-10"
-                            >
-                            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
-                        </div>
-                    </div>
-
-                    <!-- Status Filter -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Status</label>
-                        <select v-model="statusFilter" class="form-input">
-                            <option value="all">All Status</option>
-                            <option value="todo">To Do</option>
-                            <option value="in_progress">In Progress</option>
-                            <option value="completed">Completed</option>
-                        </select>
-                    </div>
-
-                    <!-- Priority Filter -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Priority</label>
-                        <select v-model="priorityFilter" class="form-input">
-                            <option value="all">All Priorities</option>
-                            <option value="low">Low</option>
-                            <option value="medium">Medium</option>
-                            <option value="high">High</option>
-                        </select>
-                    </div>
-
-                    <!-- Project Filter -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Project</label>
-                        <select v-model="projectFilter" class="form-input">
-                            <option value="all">All Projects</option>
-                            <option v-for="project in projects" :key="project.id" :value="project.id">
-                                {{ project.name }}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Filter Actions -->
-                <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
-                    <button
-                        v-if="hasActiveFilters"
-                        @click="clearFilters"
-                        class="text-gray-600 hover:text-gray-800 text-sm font-medium transition-colors"
-                    >
-                        <i class="fas fa-times mr-1"></i>Clear Filters
-                    </button>
-                    <div v-else></div>
-
-                    <!-- Sort Options -->
-                    <div class="flex items-center space-x-4">
-                        <span class="text-sm text-gray-600">Sort by:</span>
-                        <button
-                            @click="handleSort('title')"
-                            :class="['text-sm font-medium transition-colors flex items-center',
-                                    sortBy === 'title' ? 'text-blue-600' : 'text-gray-600 hover:text-gray-800']"
-                        >
-                            Title
-                            <i :class="getSortIcon('title')" class="ml-1 text-xs"></i>
-                        </button>
-                        <button
-                            @click="handleSort('priority')"
-                            :class="['text-sm font-medium transition-colors flex items-center',
-                                    sortBy === 'priority' ? 'text-blue-600' : 'text-gray-600 hover:text-gray-800']"
-                        >
-                            Priority
-                            <i :class="getSortIcon('priority')" class="ml-1 text-xs"></i>
-                        </button>
-                        <button
-                            @click="handleSort('dueDate')"
-                            :class="['text-sm font-medium transition-colors flex items-center',
-                                    sortBy === 'dueDate' ? 'text-blue-600' : 'text-gray-600 hover:text-gray-800']"
-                        >
-                            Due Date
-                            <i :class="getSortIcon('dueDate')" class="ml-1 text-xs"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
             <!-- Empty State -->
-            <div v-if="filteredAndSortedTasks.length === 0" class="text-center py-12">
+            <div v-if="tasks.length === 0" class="text-center py-12">
                 <div class="mx-auto w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-4">
-                    <i class="fas fa-search text-2xl text-gray-400"></i>
+                    <i class="fas fa-tasks text-2xl text-gray-400"></i>
                 </div>
-                <h3 class="text-lg font-medium text-gray-900 mb-2">No tasks found</h3>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">No tasks yet</h3>
                 <p class="text-gray-600 mb-4">
-                    {{ hasActiveFilters ? 'Try adjusting your filters or' : 'Get started by creating your first task.' }}
+                    Get started by creating your first task.
                 </p>
                 <button
-                    @click="hasActiveFilters ? clearFilters() : handleNewTask()"
+                    @click="handleNewTask"
                     class="btn-primary"
                 >
-                    <i :class="hasActiveFilters ? 'fas fa-filter mr-2' : 'fas fa-plus mr-2'"></i>
-                    {{ hasActiveFilters ? 'Clear Filters' : 'Create Task' }}
+                    <i class="fas fa-plus mr-2"></i>Create Task
                 </button>
             </div>
 
@@ -410,7 +223,7 @@ const TaskList = {
             <div v-else>
                 <div :class="viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : 'space-y-4'">
                     <task-card
-                        v-for="task in filteredAndSortedTasks"
+                        v-for="task in tasks"
                         :key="task.id"
                         :task="task"
                         :project="getProjectById(task.projectId)"
