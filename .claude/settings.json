@@ -8,7 +8,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "hooks/pre_tool_use.py"
+            "command": "/home/training/claude-code-subagents/.claude/hooks/pre_tool_use.py"
           }
         ]
       }
@@ -19,7 +19,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "hooks/pre_compact.py --backup --verbose"
+            "command": "/home/training/claude-code-subagents/.claude/hooks/pre_compact.py --backup --verbose"
           }
         ]
       }
@@ -30,7 +30,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "hooks/session_end.py --chat"
+            "command": "/home/training/claude-code-subagents/.claude/hooks/session_end.py --chat"
           }
         ]
       }
@@ -41,13 +41,13 @@
         "hooks": [
           {
             "type": "command",
-            "command": "hooks/subagent_stop.py --chat"
+            "command": "/home/training/claude-code-subagents/.claude/hooks/subagent_stop.py --chat"
           }
         ]
       }
     ]
   },
   "env": {
-    "CLAUDE_PROJECT_ROOT": ""
+    "CLAUDE_PROJECT_ROOT": "/home/training/claude-code-subagents"
   }
 }

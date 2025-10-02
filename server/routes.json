@@ -1,0 +1,10 @@
+{
+  "/api/*": "/$1",
+  "/api/tasks/user/:userId": "/tasks?assignedTo=:userId",
+  "/api/tasks/project/:projectId": "/tasks?projectId=:projectId",
+  "/api/tasks/status/:status": "/tasks?status=:status",
+  "/api/tasks/priority/:priority": "/tasks?priority=:priority",
+  "/api/projects/user/:userId": "/projects?ownerId=:userId",
+  "/api/users/active": "/users?active=true",
+  "/api/comments/task/:taskId": "/comments?taskId=:taskId"
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow Pro</title>
+
+    <!-- Tailwind CSS for rapid styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Vue.js 3 CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="styles/app.css">
+
+    <!-- Tailwind config for custom colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'taskflow': {
+                            50: '#eff6ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Training Session Header -->
+    <header class="bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-tasks text-taskflow-600 text-2xl"></i>
+                        <h1 class="ml-3 text-2xl font-bold text-gray-900">TaskFlow Pro</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Application -->
+    <div id="app">
+        <!-- Loading State (will be replaced by Vue app) -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center py-12">
+                <i class="fas fa-spinner fa-spin text-4xl text-gray-400 mb-4"></i>
+                <p class="text-gray-600">Loading TaskFlow Pro...</p>
+                <p class="text-sm text-gray-500 mt-2">Vue.js application is initializing</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load Vue.js components FIRST -->
+    <script src="components/TaskCard.js"></script>
+    <script src="components/TaskForm.js"></script>
+    <script src="components/TaskList.js"></script>
+
+    <!-- Load Vue.js application AFTER components are loaded -->
+    <script src="app.js"></script>
+</body>
+</html>
