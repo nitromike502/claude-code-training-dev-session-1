@@ -6,6 +6,11 @@
 
 **TaskFlow Pro** is a comprehensive task management application designed for modern teams requiring efficient project coordination and task tracking. This project serves as a practical environment for development with modern web technologies.
 
+### Project Status
+- **✅ MVP Complete**: Full CRUD operations for task management are implemented and functional
+- **🔍 Next Feature**: Search and filtering system (documented in `docs/search-feature-prd.md`)
+- The next logical enhancement is to add search, filtering, and sorting capabilities to help users navigate larger task lists efficiently
+
 ### Key Features
 
 By using this application, you will work with:

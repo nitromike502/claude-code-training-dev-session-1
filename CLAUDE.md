@@ -6,6 +6,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **TaskFlow Pro** is a Vue.js 3 task management application. It uses a simple tech stack optimized for rapid development: Vue.js 3 (CDN), json-server for REST API, and Tailwind CSS for styling.
 
+### Current Status
+- **MVP Complete**: Core task management CRUD operations are fully functional
+- **Next Feature**: Search and filtering capabilities (see `docs/search-feature-prd.md`)
+- The search feature PRD defines text search, status/priority/project filtering, and sorting functionality
+
 ## Development Commands
 
 ### Start Development Environment
