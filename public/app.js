@@ -1,15 +1,13 @@
 /**
  * TaskFlow Pro - Vue.js 3 Application
- * Claude Code Training Session - Developer Session 1
  *
- * This is the main application entry point. During the training session,
- * attendees will expand this basic structure to build a complete task management system.
+ * This is the main application entry point for the task management system.
  *
- * Learning Focus:
+ * Key Features:
  * - Vue 3 Composition API patterns
  * - API integration with json-server
  * - Component architecture and data flow
- * - Claude Code subagent demonstrations
+ * - Claude Code integration
  */
 
 const { createApp, ref, reactive, computed, onMounted } = Vue;
@@ -22,7 +20,7 @@ const TaskFlowApp = {
         const error = ref(null);
         const apiBase = 'http://localhost:3001/api';
 
-        // Data stores (will be expanded during session)
+        // Data stores
         const tasks = ref([]);
         const projects = ref([]);
         const users = ref([]);
@@ -170,7 +168,7 @@ const TaskFlowApp = {
 
         // --- Lifecycle ---
         onMounted(() => {
-            console.log('🚀 TaskFlow Pro initialized - Ready for Claude Code training!');
+            console.log('🚀 TaskFlow Pro initialized');
             fetchData();
         });
 

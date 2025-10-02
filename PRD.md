@@ -308,8 +308,8 @@ TaskFlowApp (Root Component)
 [
   {
     "id": 1,
-    "name": "Claude Code Training Platform",
-    "description": "Develop comprehensive training materials and examples for Claude Code adoption",
+    "name": "TaskFlow Platform Enhancement",
+    "description": "Develop comprehensive features and improvements for TaskFlow platform",
     "color": "#4F46E5",
     "ownerId": 1,
     "status": "active",

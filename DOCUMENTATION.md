@@ -13,7 +13,7 @@
 
 ## Project Overview
 
-**TaskFlow Pro** is a complete task management system . It demonstrates modern web development practices using Vue.js 3 with the Composition API, RESTful API design with json-server, and responsive UI development with Tailwind CSS.
+**TaskFlow Pro** is a complete task management system. It demonstrates modern web development practices using Vue.js 3 with the Composition API, RESTful API design with json-server, and responsive UI development with Tailwind CSS.
 
 ### What We Built
 

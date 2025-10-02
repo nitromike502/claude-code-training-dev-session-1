@@ -16,7 +16,7 @@
     "vue.js",
     "json-server"
   ],
-  "author": "Claude Code Training Team",
+  "author": "TaskFlow Pro Team",
   "license": "MIT",
   "devDependencies": {
     "@playwright/test": "^1.55.1",

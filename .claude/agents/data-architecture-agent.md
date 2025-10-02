@@ -29,7 +29,7 @@ When invoked, you must follow these steps:
 
 4. **Generate Sample Data**: Populate the database with realistic sample data:
    - 4 team members with DiceBear avatars
-   - 3 projects (Claude Code Training, TaskFlow v2.0, Mobile Redesign)
+   - 3 projects (Platform Enhancement, TaskFlow v2.0, Mobile Redesign)
    - 8-9 tasks distributed across projects and team members
    - Task status distribution: 3 completed, 3 in_progress, 2-3 todo
    - Realistic names, descriptions, and timestamps

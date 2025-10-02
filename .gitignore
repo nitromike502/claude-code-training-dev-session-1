@@ -1,5 +1,4 @@
 # TaskFlow Pro - GitIgnore Configuration
-# Claude Code Developer Training Session
 
 # === Node.js Dependencies ===
 node_modules/
@@ -54,14 +53,13 @@ $RECYCLE.BIN/
 .claude/agents/*.local.md
 .claude/commands/*.local.md
 
-# Session-specific configurations
+# Temporary configurations
 .claude/sessions/
 .claude/temp/
 
 # === Keep These Files ===
 !.claude/agents/
 !.claude/commands/
-!docs/session-guide.md
 !README.md
 
 # === Development Artifacts ===

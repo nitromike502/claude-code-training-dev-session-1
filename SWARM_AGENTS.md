@@ -165,7 +165,7 @@ TaskFlow Pro is a Vue.js 3 task management application using CDN-based delivery,
 
 **Sample Data Requirements**:
 - 4 team members with DiceBear avatars
-- 3 projects (Claude Code Training, TaskFlow v2.0, Mobile Redesign)
+- 3 projects (Platform Enhancement, TaskFlow v2.0, Mobile Redesign)
 - 8-9 tasks distributed across projects and team members
 - Task status distribution: 3 completed, 3 in_progress, 2-3 todo
 
@@ -189,7 +189,7 @@ TaskFlow Pro is a Vue.js 3 task management application using CDN-based delivery,
 
 **Sample Data Requirements**:
 - 4 team members with DiceBear avatars
-- 3 projects (Claude Code Training, TaskFlow v2.0, Mobile Redesign)
+- 3 projects (Platform Enhancement, TaskFlow v2.0, Mobile Redesign)
 - 8-9 tasks distributed across projects and team members
 - Task status distribution: 3 completed, 3 in_progress, 2-3 todo
 

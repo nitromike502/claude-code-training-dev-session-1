@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**TaskFlow Pro** is a Vue.js 3 task management application designed as a Claude Code training environment. It uses a simple tech stack optimized for rapid development and learning: Vue.js 3 (CDN), json-server for REST API, and Tailwind CSS for styling.
+**TaskFlow Pro** is a Vue.js 3 task management application. It uses a simple tech stack optimized for rapid development: Vue.js 3 (CDN), json-server for REST API, and Tailwind CSS for styling.
 
 ## Development Commands
 
@@ -21,7 +21,7 @@ npm run dev     # Start live-server frontend only (port 3000)
 ```
 
 ### Testing
-No formal test framework is configured. The project uses Claude Code for code analysis and quality checks as part of the training methodology.
+No formal test framework is configured. The project uses Claude Code for code analysis and quality checks.
 
 ## Architecture
 
@@ -56,21 +56,21 @@ The application manages:
 - CRUD operations with proper error handling
 - Parallel data fetching using Promise.all
 
-## Training-Specific Features
+## Claude Code Integration
 
-This codebase is designed for demonstrating Claude Code capabilities:
+This codebase integrates with Claude Code capabilities:
 
 ### Subagent Integration Points
 - Component analysis and code review workflows
 - API endpoint validation and documentation
 - Vue.js pattern recognition and best practices
 
-### Workflow Automation Targets
+### Workflow Automation
 - Component documentation generation on file changes
 - Code quality validation hooks
 - Automated testing suggestions based on component complexity
 
-### Parallel Execution Scenarios
+### Parallel Execution
 - Simultaneous data fetching (tasks, projects, users)
 - Multi-component analysis workflows
 - Concurrent development task coordination

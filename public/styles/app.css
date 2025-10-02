@@ -1,21 +1,20 @@
 /**
  * TaskFlow Pro - Custom Styles
- * Claude Code Training Session - Developer Session 1
  *
  * This CSS file provides utility classes and custom styling
- * that complement Tailwind CSS for the training session.
+ * that complement Tailwind CSS.
  */
 
-/* === Training Session Specific Styles === */
+/* === Application Specific Styles === */
 
 /* Animated loading spinner */
-@keyframes pulse-training {
+@keyframes pulse-app {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.5; }
 }
 
-.training-pulse {
-    animation: pulse-training 2s infinite;
+.app-pulse {
+    animation: pulse-app 2s infinite;
 }
 
 /* Task priority indicators */
@@ -59,7 +58,7 @@
     box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.15);
 }
 
-/* Task card styles (to be expanded during session) */
+/* Task card styles */
 .task-card {
     @apply bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover-lift transition-all duration-200;
 }
@@ -108,35 +107,35 @@
     @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
 }
 
-/* Training session specific alerts */
-.training-alert {
+/* Application specific alerts */
+.app-alert {
     @apply p-4 rounded-md border-l-4;
 }
 
-.training-alert.info {
+.app-alert.info {
     @apply bg-blue-50 border-blue-400 text-blue-700;
 }
 
-.training-alert.success {
+.app-alert.success {
     @apply bg-green-50 border-green-400 text-green-700;
 }
 
-.training-alert.warning {
+.app-alert.warning {
     @apply bg-yellow-50 border-yellow-400 text-yellow-700;
 }
 
-.training-alert.error {
+.app-alert.error {
     @apply bg-red-50 border-red-400 text-red-700;
 }
 
-/* Code highlighting for training examples */
+/* Code highlighting */
 .code-highlight {
     @apply bg-gray-100 text-gray-800 px-2 py-1 rounded text-sm font-mono;
 }
 
-/* Responsive utilities for training session */
+/* Responsive utilities */
 @media (max-width: 768px) {
-    .training-sidebar {
+    .sidebar {
         @apply w-full;
     }
 
@@ -145,7 +144,7 @@
     }
 }
 
-/* Print styles for session handouts */
+/* Print styles */
 @media print {
     .no-print {
         display: none !important;
@@ -179,7 +178,7 @@
     background-color: #9ca3af;
 }
 
-/* Animation for component transitions (will be used during session) */
+/* Animation for component transitions */
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity 0.3s ease;
@@ -205,12 +204,12 @@
     opacity: 0;
 }
 
-/* Claude Code training session branding */
-.claude-code-badge {
+/* Application branding */
+.app-badge {
     @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800;
 }
 
-.claude-code-badge::before {
-    content: "🤖";
+.app-badge::before {
+    content: "✓";
     margin-right: 0.25rem;
 }
