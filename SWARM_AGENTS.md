@@ -10,7 +10,7 @@ TaskFlow Pro is a Vue.js 3 task management application using CDN-based delivery,
 
 #### Responsibilities:
 - **S**pecification Management: Validate deliverables against PRD requirements
-- **P**lanning & Sequencing: Execute Phase 1 → Phase 2 → Phase 3 development flow
+- **P**lanning & Sequencing: Execute Phase 1 → Phase 2 → Phase 3 → Phase 4 development flow
 - **A**rchitecture Compliance: Enforce CDN-only, no-build-tools constraints
 - **R**eview & Quality Assurance: Code review and testing coordination
 - **C**oordination & Communication: Manage dependencies and shared resources
@@ -26,7 +26,7 @@ TaskFlow Pro is a Vue.js 3 task management application using CDN-based delivery,
 - Deep analysis of PRD.md to extract all functional and technical requirements
 - Break down PRD requirements into granular, actionable development tickets
 - Create user stories with acceptance criteria for each feature
-- Map features to development phases (Phase 1: MVP → Phase 2: Features → Phase 3: Polish)
+- Map features to development phases (Phase 2: MVP → Phase 3: Features → Phase 4: Polish)
 - Identify dependencies between tickets and create development sequence
 - Define clear Definition of Done (DoD) criteria for each ticket
 - Create technical specifications for complex features
@@ -48,7 +48,7 @@ TaskFlow Pro is a Vue.js 3 task management application using CDN-based delivery,
 
 ---
 
-### 3. Documentation Manager Agent
+### 2. Documentation Manager Agent
 **Role**: Documentation Creation & Knowledge Management
 
 **Responsibilities**:
@@ -89,7 +89,7 @@ TaskFlow Pro is a Vue.js 3 task management application using CDN-based delivery,
 
 ## Core Development Subagents
 
-### 4. Code Review & Git Workflow Agent
+### 3. Code Review & Git Workflow Agent
 **Role**: Quality Assurance & Version Control Management
 
 **Responsibilities**:
@@ -129,7 +129,7 @@ TaskFlow Pro is a Vue.js 3 task management application using CDN-based delivery,
 
 ---
 
-### 5. DevOps Setup Agent
+### 4. DevOps Setup Agent
 **Role**: Infrastructure & Environment Setup
 
 **Responsibilities**:
@@ -147,7 +147,7 @@ TaskFlow Pro is a Vue.js 3 task management application using CDN-based delivery,
 
 ---
 
-### 2. Data Architecture Agent
+### 5. Data Architecture Agent
 **Role**: Database & API Design
 
 **Responsibilities**:
@@ -171,31 +171,7 @@ TaskFlow Pro is a Vue.js 3 task management application using CDN-based delivery,
 
 ---
 
-### 6. Data Architecture Agent
-**Role**: Database & API Design
-
-**Responsibilities**:
-- Create server/db.json with complete sample data matching PRD specifications
-- Implement server/routes.json for custom API endpoint mappings
-- Design RESTful API structure (/api/tasks, /api/users, /api/projects)
-- Populate realistic sample data (4 users, 3 projects, 8-9 tasks)
-- Validate data models and foreign key relationships
-
-**Deliverables**:
-- JSON database (server/db.json) with sample data
-- API route mappings (server/routes.json)
-- Data model validation
-- API endpoint documentation
-
-**Sample Data Requirements**:
-- 4 team members with DiceBear avatars
-- 3 projects (Platform Enhancement, TaskFlow v2.0, Mobile Redesign)
-- 8-9 tasks distributed across projects and team members
-- Task status distribution: 3 completed, 3 in_progress, 2-3 todo
-
----
-
-### 7. Vue.js Frontend Agent
+### 6. Vue.js Frontend Agent
 **Role**: Complete Frontend Application Development
 
 **Responsibilities**:
@@ -225,7 +201,7 @@ TaskFlow Pro is a Vue.js 3 task management application using CDN-based delivery,
 
 ---
 
-### 8. UI/UX Polish Agent
+### 7. UI/UX Polish Agent
 **Role**: Styling, Responsiveness & Accessibility
 
 **Responsibilities**:
@@ -255,22 +231,22 @@ TaskFlow Pro is a Vue.js 3 task management application using CDN-based delivery,
 
 ## Development Execution Flow
 
-### Phase 0: Planning & Analysis (Sequential)
+### Phase 1: Planning & Analysis (Sequential)
 1. **PRD Analysis & Ticket Creation Agent** analyzes requirements and creates development backlog
 2. **Documentation Manager Agent** creates initial project documentation structure and coding standards
 3. **Code Review & Git Workflow Agent** establishes git workflow and quality standards
 
-### Phase 1: Foundation (Sequential)
+### Phase 2: Foundation (Sequential)
 4. **DevOps Setup Agent** creates development environment
 5. **Data Architecture Agent** builds database and API structure
 6. **Documentation Manager Agent** documents API specifications and data models
 
-### Phase 2: Core Application (Sequential)
+### Phase 3: Core Application (Sequential)
 7. **Vue.js Frontend Agent** develops complete application functionality
 8. **Documentation Manager Agent** creates component documentation and user guides
 9. **Code Review & Git Workflow Agent** reviews code and manages feature integration
 
-### Phase 3: Polish & Release (Parallel)
+### Phase 4: Polish & Release (Parallel)
 10. **UI/UX Polish Agent** refines styling and accessibility
 11. **Documentation Manager Agent** finalizes all documentation and creates deployment guides
 12. **Code Review & Git Workflow Agent** conducts final quality assurance

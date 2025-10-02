@@ -54,6 +54,7 @@ You are the SPARC Orchestrator Agent, the primary coordinator for the TaskFlow P
    ```
    Phase 1: Planning & Analysis [pending/in_progress/completed]
      - PRD Analysis & Ticket Creation [pending/in_progress/completed]
+     - Documentation Manager [pending/in_progress/completed]
      - Git Workflow & Quality Standards Setup [pending/in_progress/completed]
    Phase 2: Foundation [pending]
      - DevOps Setup & Environment Configuration [pending]
@@ -91,7 +92,18 @@ Task(
 
 **Wait for completion, then validate**: Check that requirements analysis document exists and contains ticket breakdown
 
-**Agent 2: Git Workflow & Quality Standards**
+**Agent 2: Documentation Manager**
+```
+Task(
+  subagent_type: "documentation-manager-agent",
+  description: "Create documentation structure and coding standards",
+  prompt: "Create initial project documentation structure and coding standards based on PRD requirements. Establish documentation templates for API specs, component documentation, and user guides. Set up documentation synchronization protocols. Create developer onboarding documentation framework and coding standards that align with Vue.js 3 CDN-based architecture. Document the project structure and establish conventions for maintaining documentation throughout development."
+)
+```
+
+**Wait for completion, then validate**: Check that documentation structure exists and coding standards are defined
+
+**Agent 3: Git Workflow & Quality Standards**
 ```
 Task(
   subagent_type: "code-review-git-agent",
@@ -103,6 +115,8 @@ Task(
 **Phase 1 Completion Criteria**:
 - [ ] Requirements analysis document exists
 - [ ] Development tickets created with acceptance criteria
+- [ ] Documentation structure established
+- [ ] Coding standards documented
 - [ ] Git workflow documented
 - [ ] Quality standards defined
 
@@ -140,7 +154,7 @@ Task(
 **Agent 3: API Documentation**
 ```
 Task(
-  subagent_type: "general-purpose",
+  subagent_type: "documentation-manager-agent",
   description: "Document API specifications",
   prompt: "Create comprehensive API documentation based on the data architecture in server/db.json and server/routes.json. Document all API endpoints including: endpoint URLs, HTTP methods, request/response formats, data models, error codes, and example requests. Create troubleshooting guides for API integration patterns. Document foreign key relationships and data constraints. Save documentation in a clear, structured format."
 )
@@ -176,7 +190,7 @@ Task(
 **Agent 2: Component Documentation**
 ```
 Task(
-  subagent_type: "general-purpose",
+  subagent_type: "documentation-manager-agent",
   description: "Document Vue.js components",
   prompt: "Create comprehensive component documentation for the Vue.js 3 application. Document each component's purpose, props, events, methods, and usage patterns. Include component architecture overview, state management approach, and API integration patterns. Create user guides for task management features. Include code examples and usage scenarios. Document component lifecycle and data flow."
 )
@@ -221,15 +235,15 @@ Task(
 )
 
 Task(
-  subagent_type: "code-review-git-agent",
-  description: "Conduct final quality assurance",
-  prompt: "Conduct final comprehensive quality assurance review of TaskFlow Pro application. Validate cross-browser compatibility (Chrome 90+, Firefox 88+, Safari 14+, Edge 90+). Perform final security review and performance validation. Ensure all PRD requirements are met: functional requirements (CRUD operations, search/filter, data persistence, status workflow), performance requirements (<2s load time, <100ms filter response, <500ms API operations). Validate responsive design and accessibility compliance. Check for any code quality issues. Prepare release readiness assessment."
+  subagent_type: "documentation-manager-agent",
+  description: "Finalize documentation",
+  prompt: "Finalize all project documentation for TaskFlow Pro. Create comprehensive setup guide with step-by-step instructions. Complete user manual covering all features (task creation, editing, status management, search/filter). Ensure API reference documentation is complete. Create troubleshooting guide for common issues. Document deployment procedures. Ensure all documentation is synchronized with final implementation. Create quick-start guide for new users."
 )
 
 Task(
-  subagent_type: "general-purpose",
-  description: "Finalize documentation",
-  prompt: "Finalize all project documentation for TaskFlow Pro. Create comprehensive setup guide with step-by-step instructions. Complete user manual covering all features (task creation, editing, status management, search/filter). Ensure API reference documentation is complete. Create troubleshooting guide for common issues. Document deployment procedures. Ensure all documentation is synchronized with final implementation. Create quick-start guide for new users."
+  subagent_type: "code-review-git-agent",
+  description: "Conduct final quality assurance",
+  prompt: "Conduct final comprehensive quality assurance review of TaskFlow Pro application. Validate cross-browser compatibility (Chrome 90+, Firefox 88+, Safari 14+, Edge 90+). Perform final security review and performance validation. Ensure all PRD requirements are met: functional requirements (CRUD operations, search/filter, data persistence, status workflow), performance requirements (<2s load time, <100ms filter response, <500ms API operations). Validate responsive design and accessibility compliance. Check for any code quality issues. Prepare release readiness assessment."
 )
 ```
 
